@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('FLASK_SECRET', 'Secret')
 
 app = Flask(
     __name__,
-    static_folder="../client/dist",
+    static_folder="/dist",
     static_url_path=''
 )
 
