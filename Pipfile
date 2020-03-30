@@ -9,8 +9,8 @@ verify_ssl = true
 flask = "*"
 flask-cors = "*"
 flask-socketio = "*"
-eventlet = "*"
 gunicorn = "*"
+eventlet = "*"
 
 [requires]
 python_version = "3.8"

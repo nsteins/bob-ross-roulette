@@ -19,6 +19,7 @@ app = Flask(
 CORS(app)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['FLASK_ENV'] = FLASK_ENV
+# app.debug = True
 socketio = SocketIO(app, cors_allowed_origins='*')
 ROOMS = {} # dict to track active rooms
 

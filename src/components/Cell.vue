@@ -98,7 +98,7 @@
             color="red darken-4"
             v-if='hasBets'
             text
-            :disabled="disableBetting"
+            :disabled="(disableBetting || disableIsmsClear)"
             @click="submitBet(0); dialog = false"
         >
             Clear Bets
@@ -198,6 +198,9 @@ export default {
                 notAllowed = this.isStarted;
             }
             return (!this.betValid || this.isPaidOut || notAllowed)
+        },
+        disableIsmsClear() {
+            return ((this.category === 'Isms') && this.isStarted);
         }
     },
     methods: {

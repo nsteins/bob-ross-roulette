@@ -74,13 +74,13 @@ class Info(object):
 
     def mark_payout(self, square, value):
         category = square.split('_')[0]
-        # print(category)
-        # if category == 'Isms': #payout immediately and clear bets
-        #     cell = self.game_state[square]
-        #     print(cell)
-        #     for username, amount in cell['bets'].items():
-        #             self.players[username]['chips'] += (cell['odds'] + 1) * amount
-        #     cell['bets'] = {}
+        print(category)
+        if category == 'Isms': #payout immediately and clear bets
+            cell = self.game_state[square]
+            print(cell)
+            for username, amount in cell['bets'].items():
+                    self.players[username]['chips'] += (cell['odds'] + 1) * amount
+            cell['bets'] = {}
         if category in ['Devils', 'Mountains', 'Trees', 'Windows']:
             squares = [sq for sq in self.game_state.keys() if category in sq]
             for sq in squares:
