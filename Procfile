@@ -1,1 +1,1 @@
-web: gunicorn server:backend --log-file -
+web: gunicorn --chdir='./backend' --worker-class eventlet -w 1 server:app --log-file -

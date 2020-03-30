@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('FLASK_SECRET', 'Secret')
 
 app = Flask(
     __name__,
-    static_folder="/dist",
+    static_folder="../dist/",
     static_url_path=''
 )
 
@@ -101,4 +101,4 @@ def get_players():
 
 
 if __name__ == '__main__':
-    socketio.run(app, port='5000')
+    socketio.run(app, host='0.0.0.0')
