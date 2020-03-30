@@ -50,8 +50,17 @@ export default new Vuex.Store({
     },
     isAdmin(state) {
       return state.username === state.admin;
-    }
-
+    },
+    numBets(state){
+      var userBets = {};
+      for(const player in state.players){userBets[player] = 0}
+      for(const square in state.game){
+          for(const p in state.game[square].bets){
+            userBets[p] += 1;
+          }
+      }
+      return userBets
+    },
   },
   mutations: {
     init_game(state){

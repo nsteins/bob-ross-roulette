@@ -66,6 +66,9 @@
                         ></v-img>
                 </v-col>
             </v-row>
+            <v-row v-if='tooManyBets'>
+                <v-card-text class="red--text text--darken-4">You can only place 3 bets at a time</v-card-text>
+            </v-row>
             <v-row v-if='category === "Windows"'>
                 <v-card-text>Betting on windows is only allowed after a cabin has been marked</v-card-text>
             </v-row>
@@ -112,7 +115,7 @@
         <v-btn
             color="primary"
             text
-            :disabled="disableBetting"
+            :disabled="(disableBetting || tooManyBets)"
             @click="submitBet(betValue); dialog = false"
         >
             Place Bet
@@ -144,7 +147,7 @@ export default {
     },
     computed:{
         ...mapState(['username','room','game', 'isStarted']),
-        ...mapGetters(['getChips', 'isAdmin']),
+        ...mapGetters(['getChips', 'isAdmin', 'numBets']),
         isPaidOut(){
             var key = this.category + '_' + this.name;
             if (key in this.game){
@@ -171,6 +174,14 @@ export default {
                 return this.game[key].odds;
             } else {
                 return 1;
+            }
+        },
+        tooManyBets(){
+            if (this.username in this.numBets){
+                return this.numBets[this.username] >= 3;
+            }
+            else {
+                return false;
             }
         },
         disableBetting(){
